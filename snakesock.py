@@ -13,8 +13,8 @@ class Snakesock:
         if sent == 0:
             raise Exception
 
-    def recv(self, max_length):
-        msg = self.sock.recv(2048) #NOTE: Arbitrary number
+    def recv(self, max_length=2048): #NOTE: Arbitrary number
+        msg = self.sock.recv(max_length)
         if msg == b'':
             raise Exception("socket connection broken")
         return msg
