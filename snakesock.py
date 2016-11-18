@@ -8,7 +8,7 @@ class Snakesock:
     def connect(self, host="localhost", port=8080):
         self.sock.connect((host, port))
 
-    def sent(self, msg):
+    def send(self, msg):
         sent = self.sock.send(msg)
         if sent == 0:
             raise Exception
