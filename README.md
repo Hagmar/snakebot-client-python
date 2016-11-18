@@ -2,4 +2,4 @@
 Snakebot Python client
 
 # Dependencies
-websockets 3.2
+websocket-client 0.37.0

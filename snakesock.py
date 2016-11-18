@@ -1,20 +1,21 @@
-import socket
-import json
+import websocket
 
 class Snakesock:
     def __init__(self):
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ws = websocket.WebSocket()
 
-    def connect(self, host="localhost", port=8080):
-        self.sock.connect((host, port))
+    def connect(self, host="localhost", port=8080, venue="training"):
+        self.ws.connect("ws://{}:{}/{}".format(host, port, venue))
 
     def send(self, msg):
-        sent = self.sock.send(msg)
-        if sent == 0:
-            raise Exception
+        self.ws.send(msg)
 
     def recv(self, max_length=2048): #NOTE: Arbitrary number
-        msg = self.sock.recv(max_length)
-        if msg == b'':
-            raise Exception("socket connection broken")
+        msg = self.ws.recv()
         return msg
+
+    def close(self):
+        self.ws.close()
+
+    def connected(self):
+        return self.ws.connected
