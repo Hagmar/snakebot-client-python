@@ -78,4 +78,4 @@ def register_move(next_move, incoming_json):
         "gameId" : incoming_json["gameId"]
     }
 
-    return register_move_msg;
+    return register_move_msg
